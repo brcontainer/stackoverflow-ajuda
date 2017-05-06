@@ -3,14 +3,25 @@
 $arquivo = 'csv/' . uniqid(rand(), true) . '.csv';
 
 if (empty($_FILES['file'])) {
-    echo 'A requisição parece não ter vindo por POST';
-    echo 'Depurando:<br><pre>';
+    echo 'A requisição parece não ter vindo por POST<br>', PHP_EOL;
+    echo 'Depurando:<br>', PHP_EOL;
+
+    echo '<pre>';
+
+    echo '$_SERVER', PHP_EOL;
     print_r($_SERVER);
+
+    echo '$_POST', PHP_EOL;
     print_r($_POST);
+
+    echo '$_FILES', PHP_EOL;
+    print_r($_FILES);
+
     echo '</pre>';
+
     exit;
 } elseif ($_FILES['file']['error'] !== UPLOAD_ERR_OK) {
-    echo 'Erro ao fazer o upload', $_FILES['file']['error'];
+    echo 'Erro ao fazer o upload:', $_FILES['file']['error'];
     exit;
 } elseif (!move_uploaded_file($_FILES['file']['tmp_name'], $arquivo)) {
      echo 'Erro ao mover para a pasta';
