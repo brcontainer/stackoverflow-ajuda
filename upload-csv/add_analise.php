@@ -1,9 +1,9 @@
 <?php
-//Define o lugar que serÃ¡ salvo o arquivo com um nome aleatÃ³rio
+//Define o lugar que será salvo o arquivo com um nome aleatório
 $arquivo = 'csv/' . uniqid(rand(), true) . '.csv';
 
 if (empty($_FILES['file'])) {
-    echo 'A requisiÃ§Ã£o parece nÃ£o ter vindo por POST';
+    echo 'A requisição parece não ter vindo por POST';
     echo 'Depurando:<br><pre>';
     print_r($_SERVER);
     print_r($_POST);
@@ -25,20 +25,20 @@ if (!$handle) {
     exit;
 }
 
-// LÃª o conteÃºdo do arquivo
+// Lê o conteúdo do arquivo
 while(!feof($handle)){
     // Pega os dados da linha
     $linha = fgets($handle, 1024);
 
-    // Divide as InformaÃ§Ãµes das celular para poder salvar
+    // Divide as Informações das celular para poder salvar
     $dados = explode(';', $linha);
 
 
 
-     echo $dados[0]."<br>"; 
+     echo $dados[0]."<br>";
 
 
-    // Verifica se o Dados NÃ£o Ã© o cabeÃ§alho ou nÃ£o esta em branco
+    // Verifica se o Dados Não é o cabeçalho ou não esta em branco
     if($dados[0] != 'Date' && !empty($linha)){
 
 
@@ -49,5 +49,5 @@ while(!feof($handle)){
 // Fecha arquivo aberto
 fclose($handle);
 
-//Deleta o arquivo apÃ³s usÃ¡-lo
+//Deleta o arquivo após usá-lo
 unlink($arquivo);
